@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindMate AI | Study Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <a class="brand" href="#">
+        <span class="brand-icon">✦</span>
+        <span>MindMate <small>AI STUDY PARTNER</small></span>
+      </a>
+
+      <p class="nav-heading">WORKSPACE</p>
+      <nav class="navigation">
+        <a class="nav-link active" href="#overview">▦ <span>Overview</span></a>
+        <a class="nav-link" href="#analytics">▥ <span>Study Analytics</span></a>
+        <a class="nav-link" href="#tasks">✓ <span>My Tasks</span></a>
+        <a class="nav-link" href="#focus">◷ <span>Focus Timer</span></a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="tip-card">
+          <span>💡</span>
+          <strong>Study tip</strong>
+          <p>Small, consistent study sessions can help you build a strong routine.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar">M</div>
+          <div><strong>My Workspace</strong><small>Student account</small></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL LEARNING SPACE</p>
+          <h1>Study Dashboard <span>✦</span></h1>
+          <p class="subheading">Understand your progress. Build better study habits.</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle" type="button">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">Dark mode</span>
+        </button>
+      </header>
+
+      <section class="welcome-banner" id="overview">
+        <div>
+          <span class="banner-label">YOUR JOURNEY, YOUR PACE</span>
+          <h2>Every study session counts.</h2>
+          <p>Keep learning, track your progress, and celebrate small wins.</p>
+          <a href="#analytics" class="banner-link">View my progress <span>→</span></a>
+        </div>
+        <div class="banner-art" aria-hidden="true">
+          <div class="art-circle">✦</div>
+          <div class="art-book">📚</div>
+          <div class="art-star star-one">✧</div>
+          <div class="art-star star-two">✦</div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <h2>Your study at a glance</h2>
+            <p>Updated automatically from your activity</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon purple">◷</span><span class="stat-tag">TODAY</span></div>
+            <p class="stat-label">Study time today</p>
+            <h3 id="todayStudy">0 min</h3>
+            <p class="stat-note">Time spent in focus timer</p>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon green">✓</span><span class="stat-tag">TASKS</span></div>
+            <p class="stat-label">Tasks completed</p>
+            <h3 id="completedTasks">0 / 0</h3>
+            <p class="stat-note">Your current task list</p>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon orange">◎</span><span class="stat-tag">GOAL</span></div>
+            <p class="stat-label">Daily study goal</p>
+            <h3 id="goalProgress">0%</h3>
+            <p class="stat-note" id="goalNote">Goal: 2 hours per day</p>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-icon blue">▥</span><span class="stat-tag">7 DAYS</span></div>
+            <p class="stat-label">Study this week</p>
+            <h3 id="weekStudy">0 min</h3>
+            <p class="stat-note">Total over the last 7 days</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block" id="analytics">
+        <div class="section-heading">
+          <div>
+            <h2>Study analytics</h2>
+            <p>See how consistently you have been studying.</p>
+          </div>
+          <span class="live-label"><span></span> LIVE TRACKING</span>
+        </div>
+
+        <div class="analytics-grid">
+          <article class="panel chart-panel">
+            <div class="panel-heading">
+              <div><h3>Weekly study activity</h3><p>Study minutes recorded each day</p></div>
+              <span class="chart-legend"><span></span> Study time</span>
+            </div>
+            <div class="chart-area" id="weeklyChart" aria-label="Weekly study time chart"></div>
+            <div class="chart-footer">
+              <span>Last 7 days</span>
+              <strong id="chartTotal">0 minutes total</strong>
+            </div>
+          </article>
+
+          <article class="panel goal-panel">
+            <div class="panel-heading">
+              <div><h3>Daily goal</h3><p>Your study target</p></div>
+              <span class="goal-emoji">🎯</span>
+            </div>
+            <div class="goal-ring" id="goalRing">
+              <div class="goal-ring-inner">
+                <strong id="ringPercent">0%</strong>
+                <span>completed</span>
+              </div>
+            </div>
+            <p class="goal-message" id="goalMessage">Every minute is a step forward.</p>
+            <div class="goal-details">
+              <div><span class="goal-dot done-dot"></span>Studied today <strong id="goalStudied">0 min</strong></div>
+              <div><span class="goal-dot remaining-dot"></span>Goal remaining <strong id="goalRemaining">120 min</strong></div>
+            </div>
+            <label class="goal-setting-label" for="dailyGoal">Daily goal (minutes)</label>
+            <div class="goal-setting">
+              <input id="dailyGoal" type="number" min="15" max="720" step="15" value="120">
+              <button id="saveGoal" type="button">Save</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="lower-grid">
+        <section class="panel tasks-panel" id="tasks">
+          <div class="panel-heading">
+            <div><h2>My tasks</h2><p>One step at a time.</p></div>
+            <span class="task-count" id="taskCount">0 tasks</span>
+          </div>
+
+          <form id="taskForm" class="task-form">
+            <input id="taskInput" type="text" placeholder="Add a study task..." maxlength="120" required>
+            <button type="submit" aria-label="Add task">+</button>
+          </form>
+          <div id="taskList" class="task-list"></div>
+          <p class="empty-message" id="emptyTasks">No tasks yet. Add your first study task above!</p>
+        </section>
+
+        <section class="panel focus-panel" id="focus">
+          <div class="panel-heading">
+            <div><h2>Focus timer</h2><p>Make time for focused learning.</p></div>
+            <span class="focus-badge">25 MIN</span>
+          </div>
+          <div class="timer-wrap">
+            <div class="timer-circle" id="timerCircle">
+              <div class="timer-inner">
+                <strong id="timerDisplay">25:00</strong>
+                <span id="timerStatus">Ready to focus</span>
+              </div>
+            </div>
+          </div>
+          <div class="timer-controls">
+            <button id="startTimer" class="primary-button" type="button">▶ Start focus</button>
+            <button id="resetTimer" class="secondary-button" type="button">↻ Reset</button>
+          </div>
+          <p class="timer-note">Your study time is tracked while the timer runs.</p>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <span>✦ MindMate AI</span>
+        <span>Learn at your own pace. Progress over perfection.</span>
+      </footer>
+    </main>
+  </div>
+  <!-- MindMate AI: Gamification System -->
+<section class="game-card" id="gamification">
+  <div class="game-header">
+    <div>
+      <span class="game-eyebrow">YOUR STUDY JOURNEY</span>
+      <h2>🏆 Study Rewards</h2>
+      <p>Small steps. Big achievements.</p>
+    </div>
+    <div class="game-level" id="gameLevel">Level 1</div>
+  </div>
+
+  <div class="game-stats">
+    <div class="game-stat">
+      <span class="game-stat-icon">⚡</span>
+      <div>
+        <strong id="gameXP">0 XP</strong>
+        <small>Total XP</small>
+      </div>
+    </div>
+
+    <div class="game-stat">
+      <span class="game-stat-icon">🔥</span>
+      <div>
+        <strong id="gameStreak">0 days</strong>
+        <small>Study streak</small>
+      </div>
+    </div>
+
+    <div class="game-stat">
+      <span class="game-stat-icon">🏅</span>
+      <div>
+        <strong id="gameBadgeCount">0</strong>
+        <small>Badges earned</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-progress-area">
+    <div class="game-progress-label">
+      <span id="gameProgressText">Level progress</span>
+      <span id="gameProgressNumbers">0 / 100 XP</span>
+    </div>
+    <div
+      class="game-progress-track"
+      role="progressbar"
+      aria-label="Progress to next level"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+      id="gameProgressTrack"
+    >
+      <div class="game-progress-fill" id="gameProgressFill"></div>
+    </div>
+  </div>
+
+  <div class="game-daily">
+    <div>
+      <h3>🎯 Today's Challenge</h3>
+      <p>Complete one study session to earn 20 XP.</p>
+      <small id="gameDailyStatus">Your daily reward is ready!</small>
+    </div>
+    <button class="game-claim-btn" id="gameClaimBtn" type="button">
+      Complete Session
+    </button>
+  </div>
+
+  <div class="game-badges-section">
+    <h3>🎖️ Your Achievements</h3>
+    <p class="game-muted">Unlock rewards as you make progress.</p>
+    <div class="game-badges" id="gameBadges"></div>
+  </div>
+
+  <p class="game-feedback" id="gameFeedback" role="status" aria-live="polite"></p>
+</section>
+</body>
+</html>
